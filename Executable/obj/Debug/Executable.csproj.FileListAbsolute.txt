@@ -1,0 +1,9 @@
+D:\Files\C# Workspace\St0rmTS3\Executable\obj\Debug\ResolveAssemblyReference.cache
+D:\Files\C# Workspace\St0rmTS3\Executable\bin\Debug\TS3Bot.exe
+D:\Files\C# Workspace\St0rmTS3\Executable\bin\Debug\TS3Bot.pdb
+D:\Files\C# Workspace\St0rmTS3\Executable\bin\Debug\Atlantis.Net.Irc.dll
+D:\Files\C# Workspace\St0rmTS3\Executable\bin\Debug\Atlantis.dll
+D:\Files\C# Workspace\St0rmTS3\Executable\bin\Debug\Atlantis.xml
+D:\Files\C# Workspace\St0rmTS3\Executable\bin\Debug\Atlantis.Net.Irc.xml
+D:\Files\C# Workspace\St0rmTS3\Executable\obj\Debug\TS3Bot.exe
+D:\Files\C# Workspace\St0rmTS3\Executable\obj\Debug\TS3Bot.pdb
