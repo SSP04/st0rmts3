@@ -1,0 +1,426 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Atlantis</name>
+    </assembly>
+    <members>
+        <member name="M:Atlantis.Win32.WinForms.AbortShutdown(System.String)">
+            <summary>
+                Stops a system shutdown that has been initiated.
+            </summary>
+            <param name="lpMachineName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Win32.WinForms.ExitWindows(System.UInt32,System.UInt32)">
+            <summary>
+                Logs off the interactive user, shuts down the system, or shuts down and restarts the system
+            </summary>
+            <param name="uFlags"></param>
+            <param name="dwReason"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Win32.WinForms.InitiateShutdown(System.String,System.String,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+                Initiates a shutdown and restart of the specified computer, and restarts any applications that have been registered for restart.
+            </summary>
+            <param name="lpMachineName"></param>
+            <param name="lpMessage"></param>
+            <param name="dwGracePeriod"></param>
+            <param name="dwShutdownFlags"></param>
+            <param name="dwReason"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Win32.WinForms.InitiateSystemShutdown(System.String,System.String,System.UInt32,System.Boolean,System.Boolean)">
+            <summary>
+                <para>Initiates a shutdown and optional restart of the specified computer.</para>
+                <para>To record a reason for the shutdown in the event log, call the InitiateSystemShutdownEx function.</para>
+            </summary>
+            <param name="lpMachineName"></param>
+            <param name="lpMessage"></param>
+            <param name="dwTimeout"></param>
+            <param name="bForceAppsClosed"></param>
+            <param name="bRebootAfterShutdown"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Win32.WinForms.InitiateSystemShutdownEx(System.String,System.String,System.UInt32,System.Boolean,System.Boolean,System.UInt32)">
+            <summary>
+                Initiates a shutdown and optional restart of the specified computer, and optionally records the reason for the shutdown.
+            </summary>
+            <param name="lpMachineName"></param>
+            <param name="lpMessage"></param>
+            <param name="dwTimeout"></param>
+            <param name="bForceAppsClosed"></param>
+            <param name="bRebootAfterShutdown"></param>
+            <param name="dwReason"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Win32.WinForms.LockWorkStation">
+            <summary>
+                Locks the workstation's display. Locking a workstation protects it from unauthorized use.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Net.Sockets.Legacy.UdpServer.Start">
+            <summary>
+                .
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.UdpServer.Backlog">
+            <summary>
+                Sets how many active connections the socket can support
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.UdpServer.IsInitialized">
+            <summary>
+                Gets a value indicating whether the server has been initialized
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.UdpServer.Port">
+            <summary>
+                Sets the port number for listening for incoming connections
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.UdpServer.Encoding">
+            <summary>
+                Gets or sets the text encoding for data being transferred to/from the server
+            </summary>
+        </member>
+        <member name="M:Atlantis.Net.Sockets.Legacy.TcpServer.Initialise">
+            <summary>
+                Intialises the socket to listen and begins to accept connections
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.TcpServer.Backlog">
+            <summary>
+                Gets or sets the number of connections the host can accept at any given point
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.TcpServer.Encoding">
+            <summary>
+                Gets or sets the encoding value for data transmission
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.TcpServer.Host">
+            <summary>
+                Gets or sets the host master socket
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.TcpServer.Port">
+            <summary>
+                Gets or sets the binding port for the server
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.TcpServer.RemoteEndPoint">
+            <summary>
+                Gets or sets the binding address to be used when binding the socket
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.ServerReceiveEventArgs.Data">
+            <summary>
+                Gets the byte data that was received from the TcpServer
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.ServerReceiveEventArgs.RemoteEndPoint">
+            <summary>
+                Gets the Remote Endpoint that sent the data
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.ServerReceiveEventArgs.State">
+            <summary>
+                Gets an artubary, generic object
+            </summary>
+        </member>
+        <member name="T:Atlantis.ConfigException">
+            <summary>
+                Thrown when there is an error reading a configuration file somewhere.
+            </summary>
+        </member>
+        <member name="M:Atlantis.ConfigException.#ctor(System.String)">
+            <summary>
+                Creates a new instance of the Atlantis.ConfigException with the specified message
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="F:Atlantis.Net.Sockets.UdpState.endPoint">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="F:Atlantis.Net.Sockets.UdpState.host">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="F:Atlantis.Net.Sockets.Legacy.TcpState.BufferSize">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="F:Atlantis.Net.Sockets.Legacy.TcpState.Buffer">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="F:Atlantis.Net.Sockets.Legacy.TcpState.DataRecieved">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="F:Atlantis.Net.Sockets.Legacy.TcpState.WorkSocket">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="M:Atlantis.Net.Sockets.ServerBase.#ctor">
+            <summary>
+                Creates a new IServer object using default parameters.
+            </summary>
+        </member>
+        <member name="M:Atlantis.Net.Sockets.ServerBase.#ctor(System.Int32)">
+            <summary>
+                Creates a new IServer object that will bind to the specified port on all network interfaces
+            </summary>
+            <param name="listenPort"></param>
+        </member>
+        <member name="M:Atlantis.Net.Sockets.ServerBase.#ctor(System.Net.IPEndPoint)">
+            <summary>
+                Creates a new instance of the IServer object which binds to the specified IPEndPoint
+            </summary>
+            <devdoc>
+                Binds the listening socket to a specific IP (for multiple IP-network interfaces) on the specified port.
+            </devdoc>
+            <param name="listenEndPoint"></param>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.ServerBase.BindingEndpoint">
+            <summary>
+                Gets or sets the binding IPEndPoint. Useful for computers that have multiple network interfaces attached.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.ServerBase.Encoding">
+            <summary>
+                Gets or sets the encoding that the server uses.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.ServerBase.Port">
+            <summary>
+                Gets or sets the port to be used when listening for incoming connections.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.UdpServer.IsInitialized">
+            <summary>
+                Gets a value indicating whether the server has been initialized
+            </summary>
+        </member>
+        <member name="M:Atlantis.Net.Sockets.TcpServer.Start">
+            <summary>
+                Starts listening on the specified port and initializes the thread to start accepting clients
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.UdpReceiveEventArgs.Data">
+            <summary>
+                Gets the string of data that was recieved.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Sockets.Legacy.UdpReceiveEventArgs.State">
+            <summary>
+                Gets a state object containing information about the current data recieved.
+            </summary>
+        </member>
+        <member name="M:Atlantis.Net.Sockets.Linq.SocketExtensions.IsConnected(System.Net.Sockets.Socket)">
+            <summary>
+                Determines whether a socket is connected by probing the socket for available data
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_NetworkError">
+            <summary>
+                A general failure occurred in the network hardware.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_NameNotFound">
+            <summary>
+                The message alias could not be found on the network.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_MsgNotStarted">
+            <summary>
+                The Messenger service has not been started.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_NotLocalName">
+            <summary>
+                The name is not on the local computer.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_NoForwardName">
+            <summary>
+                The forwarded message alias could not be found on the network.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_RemoteFull">
+            <summary>
+                The message alias table on the remote station is full
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_NameNotForwarded">
+            <summary>
+                Messages for this alias are not currently being forwarded
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_TruncatedBroadcast">
+            <summary>
+                The broadcast message was truncated
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_InvalidDevice">
+            <summary>
+                This is an invalid device name
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_WriteFault">
+            <summary>
+                A write fault occurred
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_DuplicateName">
+            <summary>
+                A duplicate message alias exists on the network
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_DeleteLater">
+            <summary>
+                This message alias will be deleted later.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_IncompleteDel">
+            <summary>
+                The message alias was not succssfully delete from all networks.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.NERR_MultipleNets">
+            <summary>
+                This operation is not supported on computers with multiple networks.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.EWX_LOGOFF">
+            <summary>
+                Shuts down all processes running in the logon session of the process that called the ExitWindowsEx function. Then it logs the user off.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.EWX_POWEROFF">
+            <summary>
+                Shuts down the system and turns off the power. The system must support the power-off feature. The calling process must have the SE_SHUTDOWN_NAME privilege.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.EWX_REBOOT">
+            <summary>
+                Shuts down the system and then restarts the system. The calling process must have the SE_SHUTDOWN_NAME privilege.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.EWX_RESTARTAPPS">
+            <summary>
+                Shuts down the system and then restarts it, as well as any applications that have been registered for restart using the RegisterApplicationRestart function.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.EWX_SHUTDOWN">
+            <summary>
+                Shuts down the system to a point at which it is safe to turn off the power.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.EWX_FORCE">
+            <summary>
+                This flag has no effect if terminal services is enabled. Otherwise, the system does not send the WM_QUERYENDSESSION message. This can cause applications to lose data. Therefore, you should only use this flag in an emergency.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.EWX_FORCEIFHUNG">
+            <summary>
+                Forces processes to terminate if they do not respond to the WM_QUERYENDSESSION or WM_ENDSESSION message within the timeout interval. For more information, see MSDN.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.SHUTDOWN_FORCE_OTHERS">
+            <summary>
+                All sessions are forcefully logged off.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.SHUTDOWN_FORCE_SELF">
+            <summary>
+                Specifies that the originating session is logged off forcefully.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.SHUTDOWN_GRACE_OVERRIDE">
+            <summary>
+                Overrides the grace period so that the computer is shut down immediately.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.SHUTDOWN_INSTALL_UPDATES">
+            <summary>
+                The computer installs any updates before starting the shutdown.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.SHUTDOWN_NOREBOOT">
+            <summary>
+                The computer is shut down but is not powered down or rebooted.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.SHUTDOWN_POWEROFF">
+            <summary>
+                The computer is shut down and powered down.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.SHUTDOWN_RESTART">
+            <summary>
+                The computer is shut down and rebooted.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Win32.NativeConstants.SHUTDOWN_RESTARTAPPS">
+            <summary>
+                The system is rebooted using the ExitWindowsEx function with the EWX_RESTARTAPPS flag.
+            </summary>
+        </member>
+        <member name="M:Atlantis.Win32.Network.GetUserName(System.String,System.Int32,System.IntPtr@,System.Int32,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+                Lists information about all users currently logged on to the workstation.
+            </summary>
+            <param name="servername"></param>
+            <param name="level"></param>
+            <param name="bufptr"></param>
+            <param name="prefmaxlen"></param>
+            <param name="entriesread"></param>
+            <param name="totalentries"></param>
+            <param name="resume_handle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Win32.Network.NetApiBufferFree(System.IntPtr)">
+            <summary>
+                The NetApiBufferFree function frees the memory that the NetApiBufferAllocate function allocates.
+            </summary>
+            <param name="Buffer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Win32.Network.NetUserGetInfo(System.String,System.String,System.UInt32,System.IntPtr@)">
+            <summary>
+                <para>The NetUserGetInfo function retrieves information about a particular user account on a server.</para>
+                <para>For more Information, see <see cref="!:http://www.pinvoke.net/default.aspx/netapi32/NetUserGetInfo.html"/></para>
+            </summary>
+            <param name="servername"></param>
+            <param name="username"></param>
+            <param name="level"></param>
+            <param name="buffer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Win32.Network.Send(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+                Broadcast a message over the network using the native Win32 Messenger Service
+            </summary>
+            <param name="servername">null</param>
+            <param name="msgname"></param>
+            <param name="fromname">null</param>
+            <param name="buf"></param>
+            <param name="buflen"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

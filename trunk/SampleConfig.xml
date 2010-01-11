@@ -1,0 +1,21 @@
+<TS3Bot>
+
+	<Bot>
+		<Nick> 
+			TS3
+		</Nick>
+		<User>
+			TS3Bot
+		</User>
+		<RealName>
+			http://code.google.com/st0rmts3
+		</RealName>
+	</Bot>
+	
+	<Server>
+		<Host>irc.st0rm.net</Host>
+		<Port>6667</Port>
+		<Pass></Pass>
+	</Server>
+
+</TS3Bot>

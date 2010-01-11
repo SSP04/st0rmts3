@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Atlantis.Net.Irc</name>
+    </assembly>
+    <members>
+        <member name="P:Atlantis.Net.Irc.DebugEventArgs.Data">
+            <summary>
+                Gets the raw data received from the IRC server
+            </summary>
+        </member>
+        <member name="M:Atlantis.Net.Irc.Channel.Message(System.String,System.Object[])">
+            <summary>
+                Sends a message to the current channel, coming from the originating client
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Atlantis.Net.Irc.Channel.Modes">
+            <summary>
+                Gets or sets the channel modes set on the current channel
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.Channel.Name">
+            <summary>
+                Gets the channel name of the current channel
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.Channel.Users">
+            <summary>
+                Gets a list of users and their access levels on the current channel
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.PrivateMessageReceivedEventArgs.IsNotice">
+            <summary>
+                Gets a value indicating whether the incoming message was triggered by a notice
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.PrivateMessageReceivedEventArgs.Message">
+            <summary>
+                Gets the message that triggered the event
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.PrivateMessageReceivedEventArgs.Nick">
+            <summary>
+                Gets the nick that sent the message
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.PrivateMessageReceivedEventArgs.Target">
+            <summary>
+                Gets the target of the event
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.PrivateMessageReceivedEventArgs.UserHost">
+            <summary>
+                Gets the user host of the the nick that sent the message
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.JoinPartEventArgs.Channel">
+            <summary>
+                Gets the channel that was just joined or parted
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.JoinPartEventArgs.Nick">
+            <summary>
+                Gets the nick that triggered the join or part event
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.JoinPartEventArgs.UserHost">
+            <summary>
+                Gets the host of the user that joined or parted the channel
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.ChannelMessageReceiveEventArgs.IsNotice">
+            <summary>
+                Gets a value indicating whether the incoming message was triggered by a notice
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.ChannelMessageReceiveEventArgs.Message">
+            <summary>
+                Gets the message that triggered the event
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.ChannelMessageReceiveEventArgs.Nick">
+            <summary>
+                Gets the nick that sent the message
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.ChannelMessageReceiveEventArgs.Target">
+            <summary>
+                Gets the target channel of the event
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.ChannelMessageReceiveEventArgs.UserHost">
+            <summary>
+                Gets the user host of the the nick that sent the message
+            </summary>
+        </member>
+        <member name="M:Atlantis.Net.Irc.IrcClient.GetChannel(System.String)">
+            <summary>
+                Returns a channel based on the specified name.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Net.Irc.IrcClient.Send(System.String,System.Object[])">
+            <summary>
+                Sends the specified System.String to the IRC connection
+            </summary>
+            <param name="data"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.Channels">
+            <summary>
+                Gets a list of channels the client is currently on
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.Client">
+            <summary>
+                Gets the underlying TcpClient supporting the IrcClient
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.Encoding">
+            <summary>
+                Gets or sets the encoding of the text that is read and written to IRC
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.Ident">
+            <summary>
+                Gets or sets the Identity of the client
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.IsInitialized">
+            <summary>
+                Gets a value indicating whether the IrcClient has been initialized pre-connection state.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.Host">
+            <summary>
+                Gets or sets the host of the IRC server the client is connecting to
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.Nick">
+            <summary>
+                Gets or sets the Nickname of the client.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.Password">
+            <summary>
+                Gets or sets the connection password to be sent upon connecting to the IRC server
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.Port">
+            <summary>
+                Gets or sets the port to use when connecting to the IRC server
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.Realname">
+            <summary>
+                Gets or sets the client's Realname
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.StrictNames">
+            <summary>
+                Gets or sets a value determining whether to always request NAMES upon any action that involves users leaving, quitting, being kicked, etc.
+                <para>Default: false</para>
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClient.WriteLog">
+            <summary>
+                Gets or sets a value indicating whether IRC output received from should be written to "ircdebug_M-D-YYYY.txt" in the program's output directory
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.IrcClientEventArgs.Client">
+            <summary>
+                Gets the IrcClient object that this generic event was sent on
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.RawEventArgs.Data">
+            <summary>
+                Gets the data from the IRC raw
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.RawEventArgs.Numeric">
+            <summary>
+                Gets the IRC numeric trigger
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.QuitEventArgs.Message">
+            <summary>
+                Gets the message, or quit reason, that was specified from the IRC Server
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.QuitEventArgs.Nick">
+            <summary>
+                Gets the nick that just left the IRC server
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.NickChangeEventArgs.NewNick">
+            <summary>
+                Gets the nick that the old nick was just changed to
+            </summary>
+        </member>
+        <member name="P:Atlantis.Net.Irc.NickChangeEventArgs.OldNick">
+            <summary>
+                Gets the nick that just changed their nick
+            </summary>
+        </member>
+    </members>
+</doc>
