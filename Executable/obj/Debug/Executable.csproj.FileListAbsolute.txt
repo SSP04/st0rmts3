@@ -7,3 +7,6 @@ D:\Files\C# Workspace\St0rmTS3\Executable\bin\Debug\Atlantis.xml
 D:\Files\C# Workspace\St0rmTS3\Executable\bin\Debug\Atlantis.Net.Irc.xml
 D:\Files\C# Workspace\St0rmTS3\Executable\obj\Debug\TS3Bot.exe
 D:\Files\C# Workspace\St0rmTS3\Executable\obj\Debug\TS3Bot.pdb
+D:\Files\C# Workspace\st0rmts3\Executable\bin\Debug\ts3server_win32.dll
+D:\Files\C# Workspace\st0rmts3\Executable\bin\Debug\ts3server_win64.dll
+D:\Files\C# Workspace\st0rmts3\Executable\bin\Debug\Config.xml
