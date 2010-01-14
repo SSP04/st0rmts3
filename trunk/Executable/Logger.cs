@@ -36,7 +36,7 @@ namespace TS3.Executable
         {
             Error(note);
             Error("-------------------------------------------------");
-            Error(e.StackTrace);
+            Error(e.ToString());
         }
    
         private static void PrintColoredLineToConsole(ConsoleColor color, string line)

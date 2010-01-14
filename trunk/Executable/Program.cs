@@ -9,6 +9,13 @@ namespace TS3.Executable
     {
         public static int Main(string[] args)
         {
+
+            IRC irc = new IRC(Config.Instance.Nick, Config.Instance.User, Config.Instance.Realname);
+
+            irc.Connect(Config.Instance.IrcServer, Config.Instance.IrcPass, Config.Instance.IrcPort);
+
+            
+
             return 0;
         }
     }

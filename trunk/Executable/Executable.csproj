@@ -59,6 +59,9 @@
     <Compile Include="InterOp\TS3Server.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ts3server_win32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

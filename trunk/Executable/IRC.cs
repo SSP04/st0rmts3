@@ -30,7 +30,7 @@ namespace TS3.Executable
         {
             if (client == null)
                 return false;
-            if (client.Client.Connected)
+            if (client.Client != null && client.Client.Connected)
             {
                 client.Disconnect("Connect method called without a graceful disconnect...");
             }

@@ -24,6 +24,14 @@ namespace TS3.Executable
 
         #region Specially Loaded Items
 
+        public string Nick = null;
+        public string User = null;
+        public string Realname = null;
+
+        public string IrcServer = null;
+        public ushort IrcPort = 0;
+        public string IrcPass = null;
+
         #endregion
 
 
@@ -42,7 +50,27 @@ namespace TS3.Executable
                 return false;
             }
 
-            Xml.Load(FILENAME);
+            try
+            {
+
+                Xml.Load(FILENAME);
+
+                Nick = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Bot/Nick").InnerText;
+                User = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Bot/User").InnerText;
+                Realname = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Bot/RealName").InnerText;
+
+                IrcServer = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Server/Host").InnerText;
+                IrcPort = ushort.Parse(Xml.DocumentElement.SelectSingleNode("/TS3Bot/Server/Port").InnerText);
+                IrcPass = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Server/Pass").InnerText;
+
+            }
+
+            catch (Exception e)
+            {
+                Logger.Error(e, "Cannot continue without a properly loaded configuration file.");
+                Environment.Exit(1);
+            }
+
             return true;
         }
 
