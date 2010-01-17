@@ -39,7 +39,7 @@ namespace TS3.Executable
             client.Password = pass;
             client.Port = port > 0 ? port : 6667;
             client.Start();
-            return false;
+            return true;
 
         }
     }
