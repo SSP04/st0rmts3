@@ -10,217 +10,360 @@ using anyID = System.UInt32;
 
 namespace TS3.Executable.InterOp
 {
+    /*
+  * TeamSpeak 3 client minimal sample C#
+  *
+  * Copyright (c) 2007-2009 TeamSpeak-Systems
+  */
+
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onVoiceDataEvent_type(anyID serverID, anyID clientID, string voiceData, uint voiceDataSize, uint frequency);
+    public delegate void onConnectStatusChangeEvent_type(anyID serverConnectionHandlerID, int newStatus, uint errorNumber);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onClientStartTalkingEvent_type(anyID serverID, anyID clientID);
+    public delegate void onNewChannelEvent_type(anyID serverConnectionHandlerID, anyID channelID, anyID channelParentID);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onClientStopTalkingEvent_type(anyID serverID, anyID clientID);
+    public delegate void onNewChannelCreatedEvent_type(anyID serverConnectionHandlerID, anyID channelID, anyID channelParentID, anyID invokerID, string invokerName, string invokerUniqueIdentifier);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onClientConnected_type(anyID serverID, anyID clientID, anyID channelID, ref uint removeClientError);
+    public delegate void onDelChannelEvent_type(anyID serverConnectionHandlerID, anyID channelID, anyID invokerID, string invokerName, string invokerUniqueIdentifier);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onClientDisconnected_type(anyID serverID, anyID clientID, anyID channelID);
+    public delegate void onChannelMoveEvent_type(anyID serverConnectionHandlerID, anyID channelID, anyID newChannelParentID, anyID invokerID, string invokerName, string invokerUniqueIdentifier);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onClientMoved_type(anyID serverID, anyID clientID, anyID oldChannelID, anyID newChannelID);
+    public delegate void onUpdateChannelEvent_type(anyID serverConnectionHandlerID, anyID channelID);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onChannelCreated_type(anyID serverID, anyID invokerClientID, anyID channelID);
+    public delegate void onUpdateChannelEditedEvent_type(anyID serverConnectionHandlerID, anyID channelID, anyID invokerID, string invokerName, string invokerUniqueIdentifier);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onChannelEdited_type(anyID serverID, anyID invokerClientID, anyID channelID);
+    public delegate void onUpdateClientEvent_type(anyID serverConnectionHandlerID, anyID clientID);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onChannelDeleted_type(anyID serverID, anyID invokerClientID, anyID channelID);
+    public delegate void onClientMoveEvent_type(anyID serverConnectionHandlerID, anyID clientID, anyID oldChannelID, anyID newChannelID, int visibility, string moveMessage);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onTextMessageEvent_type(anyID serverID, int textMessageMode, anyID invokerClientID, ref anyID targetIDS, string textMessage);
+    public delegate void onClientMoveSubscriptionEvent_type(anyID serverConnectionHandlerID, anyID clientID, anyID oldChannelID, anyID newChannelID, int visibility);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onClientMoveTimeoutEvent_type(anyID serverConnectionHandlerID, anyID clientID, anyID oldChannelID, anyID newChannelID, int visibility, string timeoutMessage);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onClientMoveMovedEvent_type(anyID serverConnectionHandlerID, anyID clientID, anyID oldChannelID, anyID newChannelID, int visibility, anyID moverID, string moverName, string moverUniqueIdentifier, string moveMessage);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onClientKickFromChannelEvent_type(anyID serverConnectionHandlerID, anyID clientID, anyID oldChannelID, anyID newChannelID, int visibility, anyID kickerID, string kickerName, string kickerUniqueIdentifier, string kickMessage);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onClientKickFromServerEvent_type(anyID serverConnectionHandlerID, anyID clientID, anyID oldChannelID, anyID newChannelID, int visibility, anyID kickerID, string kickerName, string kickerUniqueIdentifier, string kickMessage);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onClientIDsEvent_type(anyID serverConnectionHandlerID, string uniqueClientIdentifier, anyID clientID, string clientName);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onClientIDsFinishedEvent_type(anyID serverConnectionHandlerID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onServerEditedEvent_type(anyID serverConnectionHandlerID, anyID editerID, string editerName, string editerUniqueIdentifier);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onServerUpdatedEvent_type(anyID serverConnectionHandlerID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onServerErrorEvent_type(anyID serverConnectionHandlerID, string errorMessage, uint error, string returnCode, string extraMessage);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onServerStopEvent_type(anyID serverConnectionHandlerID, string shutdownMessage);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onTextMessageEvent_type(anyID serverConnectionHandlerID, anyID targetMode, anyID fromID, string fromName, string fromUniqueIdentifier, string message, ref anyID targets);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onTalkStatusChangeEvent_type(anyID serverConnectionHandlerID, int status, anyID clientID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onConnectionInfoEvent_type(anyID serverConnectionHandlerID, anyID clientID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onServerConnectionInfoEvent_type(anyID serverConnectionHandlerID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onChannelSubscribeEvent_type(anyID serverConnectionHandlerID, anyID channelID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onChannelSubscribeFinishedEvent_type(anyID serverConnectionHandlerID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onChannelUnsubscribeEvent_type(anyID serverConnectionHandlerID, anyID channelID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onChannelUnsubscribeFinishedEvent_type(anyID serverConnectionHandlerID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onChannelDescriptionUpdateEvent_type(anyID serverConnectionHandlerID, anyID channelID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onChannelPasswordChangedEvent_type(anyID serverConnectionHandlerID, anyID channelID);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onCustomCaptureDeviceCloseEvent_type(anyID serverConnectionHandlerID, IntPtr/*void* */ fmodSystem);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onCustomPlaybackDeviceCloseEvent_type(anyID serverConnectionHandlerID, IntPtr/*void* */ fmodSystem);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onFMODChannelCreatedEvent_type(anyID serverConnectionHandlerID, anyID clientID, IntPtr/*void**/ fmodChannel);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void onPlaybackShutdownCompleteEvent_type(anyID serverConnectionHandlerID);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void onUserLoggingMessageEvent_type(string logmessage, int logLevel, string logChannel, anyID logID, string logTime, string completeLogString);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void onAccountingErrorEvent_type(anyID serverID, int errorCode);
+    public delegate void onVoiceRecordDataEvent_type(float[] data, uint dataSize);
 
-    /* For unused callbacks */
+    /* for rare, but unused in SDK */
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void dummy_type();
+    public delegate void dummy1_type();
+
+    /* for rare, but unused in SDK */
+    [StructLayout(LayoutKind.Sequential)]
+    public struct client_callbackrare_struct
+    {
+        public dummy1_type dummy1_delegate;
+        public dummy1_type dummy2_delegate;
+        public dummy1_type dummy3_delegate;
+        public dummy1_type dummy4_delegate;
+        public dummy1_type dummy5_delegate;
+        public dummy1_type dummy6_delegate;
+        public dummy1_type dummy7_delegate;
+        public dummy1_type dummy8_delegate;
+        public dummy1_type dummy9_delegate;
+        public dummy1_type dummy10_delegate;
+        public dummy1_type dummy11_delegate;
+        public dummy1_type dummy12_delegate;
+        public dummy1_type dummy13_delegate;
+        public dummy1_type dummy14_delegate;
+        public dummy1_type dummy15_delegate;
+        public dummy1_type dummy16_delegate;
+        public dummy1_type dummy17_delegate;
+        public dummy1_type dummy18_delegate;
+        public dummy1_type dummy19_delegate;
+        public dummy1_type dummy20_delegate;
+        public dummy1_type dummy21_delegate;
+        public dummy1_type dummy22_delegate;
+        public dummy1_type dummy23_delegate;
+        public dummy1_type dummy24_delegate;
+        public dummy1_type dummy25_delegate;
+        public dummy1_type dummy26_delegate;
+        public dummy1_type dummy27_delegate;
+    }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct server_callback_struct
+    public struct client_callback_struct
     {
-        public onVoiceDataEvent_type onVoiceDataEvent_delegate;
-        public onClientStartTalkingEvent_type onClientStartTalkingEvent_delegate;
-        public onClientStopTalkingEvent_type onClientStopTalkingEvent_delegate;
-        public onClientConnected_type onClientConnected_delegate;
-        public onClientDisconnected_type onClientDisconnected_delegate;
-        public onClientMoved_type onClientMoved_delegate;
-        public onChannelCreated_type onChannelCreated_delegate;
-        public onChannelEdited_type onChannelEdited_delegate;
-        public onChannelDeleted_type onChannelDeleted_delegate;
+        public onConnectStatusChangeEvent_type onConnectStatusChangeEvent_delegate;
+        public onNewChannelEvent_type onNewChannelEvent_delegate;
+        public onNewChannelCreatedEvent_type onNewChannelCreatedEvent_delegate;
+        public onDelChannelEvent_type onDelChannelEvent_delegate;
+        public onChannelMoveEvent_type onChannelMoveEvent_delegate;
+        public onUpdateChannelEvent_type onUpdateChannelEvent_delegate;
+        public onUpdateChannelEditedEvent_type onUpdateChannelEditedEvent_delegate;
+        public onUpdateClientEvent_type onUpdateClientEvent_delegate;
+        public onClientMoveEvent_type onClientMoveEvent_delegate;
+        public onClientMoveSubscriptionEvent_type onClientMoveSubscriptionEvent_delegate;
+        public onClientMoveTimeoutEvent_type onClientMoveTimeoutEvent_delegate;
+        public onClientMoveMovedEvent_type onClientMoveMovedEvent_delegate;
+        public onClientKickFromChannelEvent_type onClientKickFromChannelEvent_delegate;
+        public onClientKickFromServerEvent_type onClientKickFromServerEvent_delegate;
+        public onClientIDsEvent_type onClientIDsEvent_delegate;
+        public onClientIDsFinishedEvent_type onClientIDsFinishedEvent_delegate;
+        public onServerEditedEvent_type onServerEditedEvent_delegate;
+        public onServerUpdatedEvent_type onServerUpdatedEvent_delegate;
+        public onServerErrorEvent_type onServerErrorEvent_delegate;
+        public onServerStopEvent_type onServerStopEvent_delegate;
         public onTextMessageEvent_type onTextMessageEvent_delegate;
+        public onTalkStatusChangeEvent_type onTalkStatusChangeEvent_delegate;
+        public onConnectionInfoEvent_type onConnectionInfoEvent_delegate;
+        public onServerConnectionInfoEvent_type onServerConnectionInfoEvent_delegate;
+        public onChannelSubscribeEvent_type onChannelSubscribeEvent_delegate;
+        public onChannelSubscribeFinishedEvent_type onChannelSubscribeFinishedEvent_delegate;
+        public onChannelUnsubscribeEvent_type onChannelUnsubscribeEvent_delegate;
+        public onChannelUnsubscribeFinishedEvent_type onChannelUnsubscribeFinishedEvent_delegate;
+        public onChannelDescriptionUpdateEvent_type onChannelDescriptionUpdateEvent_delegate;
+        public onChannelPasswordChangedEvent_type onChannelPasswordChangedEvent_delegate;
+        public onCustomCaptureDeviceCloseEvent_type onCustomCaptureDeviceCloseEvent_delegate;
+        public onCustomPlaybackDeviceCloseEvent_type onCustomPlaybackDeviceCloseEvent_delegate;
+        public onFMODChannelCreatedEvent_type onFMODChannelCreatedEvent_delegate;
+        public onPlaybackShutdownCompleteEvent_type onPlaybackShutdownCompleteEvent_delegate;
         public onUserLoggingMessageEvent_type onUserLoggingMessageEvent_delegate;
-        public onAccountingErrorEvent_type onAccountingErrorEvent_delegate;
-        public dummy_type dummy1_delegate;  // onCustomPacketEncryptEvent unused
-        public dummy_type dummy2_delegate;  // onCustomPacketDecryptEvent unused
+        public onVoiceRecordDataEvent_type onVoiceRecordDataEvent_delegate;
+        public dummy1_type dummy1_delegate;
+        public dummy1_type dummy2_delegate;
     }
 
     public static class callback
     {
         /*
-         * Callback when client has connected.
-         *
-         * Parameter:
-         *   serverID  - Virtual server ID
-         *   clientID  - ID of connected client
-         *   channelID - ID of channel the client joined
-         */
-        public static void onClientConnected(anyID serverID, anyID clientID, anyID channelID, ref uint removeClientError)
+        * Callback for connection status change.
+        * Connection status switches through the states STATUS_DISCONNECTED, STATUS_CONNECTING, STATUS_CONNECTED and STATUS_CONNECTION_ESTABLISHED.
+        *
+        * Parameters:
+        *   serverConnectionHandlerID - Server connection handler ID
+        *   newStatus                 - New connection status, see the enum ConnectStatus in clientlib_publicdefinitions.h
+        *   errorNumber               - Error code. Should be zero when connecting or actively disconnection.
+        *                               Contains error state when losing connection.
+        */
+        public static void onConnectStatusChangeEvent(anyID serverConnectionHandlerID, int newStatus, uint errorNumber)
         {
-            Console.WriteLine("Client {0} joined channel {1} on virtual server {2}", clientID, channelID, serverID);
-        }
-
-        /*
-         * Callback when client has disconnected.
-         *
-         * Parameter:
-         *   serverID  - Virtual server ID
-         *   clientID  - ID of disconnected client
-         *   channelID - ID of channel the client left
-         */
-        public static void onClientDisconnected(anyID serverID, anyID clientID, anyID channelID)
-        {
-            Console.WriteLine("Client {0} left channel {1} on virtual server {2}", clientID, channelID, serverID);
-        }
-
-        /*
-         * Callback when client has moved.
-         *
-         * Parameter:
-         *   serverID     - Virtual server ID
-         *   clientID     - ID of moved client
-         *   oldChannelID - ID of old channel the client left
-         *   newChannelID - ID of new channel the client joined
-         */
-        public static void onClientMoved(anyID serverID, anyID clientID, anyID oldChannelID, anyID newChannelID)
-        {
-            Console.WriteLine("Client {0} moved from channel {1} to channel {2} on virtual server {3}\n", clientID, oldChannelID, newChannelID, serverID);
-        }
-
-        /*
-         * Callback when channel has been created.
-         *
-         * Parameter:
-         *   serverID        - Virtual server ID
-         *   invokerClientID - ID of the client who created the channel
-         *   channelID       - ID of the created channel
-         */
-        public static void onChannelCreated(anyID serverID, anyID invokerClientID, anyID channelID)
-        {
-            Console.WriteLine("Channel {0} created by {1} on virtual server {2}", channelID, invokerClientID, serverID);
-        }
-
-        /*
-         * Callback when channel has been edited.
-         *
-         * Parameter:
-         *   serverID        - Virtual server ID
-         *   invokerClientID - ID of the client who edited the channel
-         *   channelID       - ID of the edited channel
-         */
-        public static void onChannelEdited(anyID serverID, anyID invokerClientID, anyID channelID)
-        {
-            Console.WriteLine("Channel {0} edited by {1} on virtual server {2}", channelID, invokerClientID, serverID);
-        }
-
-        /*
-         * Callback when channel has been deleted.
-         *
-         * Parameter:
-         *   serverID        - Virtual server ID
-         *   invokerClientID - ID of the client who deleted the channel
-         *   channelID       - ID of the deleted channel
-         */
-        public static void onChannelDeleted(anyID serverID, anyID invokerClientID, anyID channelID)
-        {
-            Console.WriteLine("Channel {0} deleted by {1} on virtual server {2}", channelID, invokerClientID, serverID);
-        }
-
-        /*
-         * Callback when a text message has been received.
-         * Note that only server and channel chats are received, private client are not caught due to privacy reasons.
-         *
-         * Parameter:
-         *   serverID        - Virtual server ID
-         *   textMessageMode - Indicates if the receiver is a channel, server or client. See enum TextMessageTargetMode 
-         *   invokerClientID - ID of the client who sent the text message.
-         *   targetIDS       - Target IDs
-         *   textMessage     - Message text
-         */
-        public static void onTextMessageEvent(anyID serverID, int textMessageMode, anyID invokerClientID, ref anyID targetIDS, string textMessage)
-        {
-            // Note: Client targets are not received
-            if (textMessageMode == 2)
-            {  // Channel
-                Console.WriteLine("Text message in channel {0} by {1}: {2}", targetIDS, invokerClientID, textMessage);
-            }
-            else if (textMessageMode == 3)
-            {  // Server
-                Console.WriteLine("Text message in server chat by {0}: {1}", invokerClientID, textMessage);
-            }
-        }
-
-        /*
-         * Callback for user-defined logging.
-         *
-         * Parameter:
-         *   logMessage        - Log message text
-         *   logLevel          - Severity of log message
-         *   logChannel        - Custom text to categorize the message channel
-         *   logID             - Virtual server ID giving the virtual server source of the log event
-         *   logTime           - String with the date and time the log entry occured
-         *   completeLogString - Verbose log message including all previous parameters for convinience
-         */
-        public static void onUserLoggingMessageEvent(string logMessage, int logLevel, string logChannel, anyID logID, string logTime, string completeLogString)
-        {
-            /* Your custom error display here... */
-            /* Console.WriteLine("LOG: {0}", completeLogString); */
-            if (logLevel == (int)LogLevel.LogLevel_CRITICAL)
+            Console.WriteLine("Connect status changed: {0} {1} {2}", serverConnectionHandlerID, newStatus, errorNumber);
+            /* Failed to connect ? */
+            if (newStatus == (int)ConnectStatus.STATUS_DISCONNECTED && errorNumber == (int)public_errors.ERROR_failed_connection_initialisation)
             {
-                System.Environment.Exit(1);  /* Your custom handling of critical errors */
+                Console.WriteLine("Looks like there is no server running, terminate!\n");
+                Console.ReadLine();
+                System.Environment.Exit(-1);
             }
         }
 
         /*
-         * Callback triggered when the specified client starts talking.
-         *
-         * Parameters:
-         *   serverID - ID of the server sending the callback
-         *   clientID - ID of the client which started talking
-         */
-        public static void onClientStartTalkingEvent(anyID serverID, anyID clientID)
+        * Callback for current channels being announced to the client after connecting to a server.
+        *
+        * Parameters:
+        *   serverConnectionHandlerID - Server connection handler ID
+        *   channelID                 - ID of the announced channel
+        *   channelParentID           - ID of the parent channel
+        */
+        public static void onNewChannelEvent(anyID serverConnectionHandlerID, anyID channelID, anyID channelParentID)
         {
-            Console.WriteLine("onClientStartTalkingEvent serverID={0}, clientID={1}", serverID, clientID);
+            string name;
+            string errormsg;
+            uint error;
+            IntPtr namePtr = IntPtr.Zero;
+            Console.WriteLine("onNewChannelEvent: {0} {1} {2}", serverConnectionHandlerID, channelID, channelParentID);
+            error = TS3Client.ts3client_getChannelVariableAsString(serverConnectionHandlerID, channelID, ChannelProperties.CHANNEL_NAME, out namePtr);
+            if (error == (int)public_errors.ERROR_ok)
+            {
+                name = Marshal.PtrToStringAnsi(namePtr);
+                Console.WriteLine("New channel: {0} {1}", channelID, name);
+                TS3Client.ts3client_freeMemory(namePtr);  /* Release dynamically allocated memory only if function succeeded */
+            }
+            else
+            {
+                IntPtr errormsgPtr = IntPtr.Zero;
+                if (TS3Client.ts3client_getErrorMessage(error, errormsgPtr) == (int)public_errors.ERROR_ok)
+                {
+                    errormsg = Marshal.PtrToStringAnsi(errormsgPtr);
+                    Console.WriteLine("Error getting channel name in onNewChannelEvent: {0}", errormsg);
+                    TS3Client.ts3client_freeMemory(errormsgPtr);
+                }
+            }
         }
 
         /*
-         * Callback triggered when the specified client stops talking.
-         *
-         * Parameters:
-         *   serverID - ID of the server sending the callback
-         *   clientID - ID of the client which stopped talking
-         */
-        public static void onClientStopTalkingEvent(anyID serverID, anyID clientID)
+        * Callback for just created channels.
+        *
+        * Parameters:
+        *   serverConnectionHandlerID - Server connection handler ID
+        *   channelID                 - ID of the announced channel
+        *   channelParentID           - ID of the parent channel
+        *   invokerID                 - ID of the client who created the channel
+        *   invokerName               - Name of the client who created the channel
+        */
+        public static void onNewChannelCreatedEvent(anyID serverConnectionHandlerID, anyID channelID, anyID channelParentID, anyID invokerID, string invokerName, string invokerUniqueIdentifier)
         {
-            Console.WriteLine("onClientStopTalkingEvent serverID={0}, clientID={1}", serverID, clientID);
+            string name;
+            IntPtr namePtr = IntPtr.Zero;
+            /* Query channel name from channel ID */
+            uint error = TS3Client.ts3client_getChannelVariableAsString(serverConnectionHandlerID, channelID, ChannelProperties.CHANNEL_NAME, out namePtr);
+            if (error != (int)public_errors.ERROR_ok)
+            {
+                return;
+            }
+            name = Marshal.PtrToStringAnsi(namePtr);
+            Console.WriteLine("New channel created: {0}", name);
+            TS3Client.ts3client_freeMemory(namePtr);  /* Release dynamically allocated memory only if function succeeded */
         }
 
         /*
-         * Callback triggered when a license error occurs.
-         *
-         * Parameters:
-         *   serverID  - ID of the virtual server on which the license error occured. This virtual server will be automatically
-         *               shutdown. If the parameter is zero, all virtual servers are affected and have been shutdown.
-         *   errorCode - Code of the occured error. Use ts3server_getGlobalErrorMessage() to convert to a message string
-         */
-        public static void onAccountingErrorEvent(anyID serverID, int errorCode)
+        * Callback when a channel was deleted.
+        *
+        * Parameters:
+        *   serverConnectionHandlerID - Server connection handler ID
+        *   channelID                 - ID of the deleted channel
+        *   invokerID                 - ID of the client who deleted the channel
+        *   invokerName               - Name of the client who deleted the channel
+        */
+        public static void onDelChannelEvent(anyID serverConnectionHandlerID, anyID channelID, anyID invokerID, string invokerName, string invokerUniqueIdentifier)
         {
-            Console.WriteLine("onAccountingErrorEvent serverID={0}, errorCode={1}", serverID, errorCode);
-            System.Environment.Exit(1);
+            Console.WriteLine("Channel ID {0} deleted by {1} ({2})", channelID, invokerName, invokerID);
+        }
+
+        /*
+        * Called when a client joins, leaves or moves to another channel.
+        *
+        * Parameters:
+        *   serverConnectionHandlerID - Server connection handler ID
+        *   clientID                  - ID of the moved client
+        *   oldChannelID              - ID of the old channel left by the client
+        *   newChannelID              - ID of the new channel joined by the client
+        *   visibility                - Visibility of the moved client. See the enum Visibility in clientlib_publicdefinitions.h
+        *                               Values: ENTER_VISIBILITY, RETAIN_VISIBILITY, LEAVE_VISIBILITY
+        */
+        public static void onClientMoveEvent(anyID serverConnectionHandlerID, anyID clientID, anyID oldChannelID, anyID newChannelID, int visibility, string moveMessage)
+        {
+            Console.WriteLine("ClientID {0} moves from channel {1} to {2} with message {3}", clientID, oldChannelID, newChannelID, moveMessage);
+        }
+
+        /*
+        * Callback for other clients in current and subscribed channels being announced to the client.
+        *
+        * Parameters:
+        *   serverConnectionHandlerID - Server connection handler ID
+        *   clientID                  - ID of the announced client
+        *   oldChannelID              - ID of the subscribed channel where the client left visibility
+        *   newChannelID              - ID of the subscribed channel where the client entered visibility
+        *   visibility                - Visibility of the announced client. See the enum Visibility in clientlib_publicdefinitions.h
+        *                               Values: ENTER_VISIBILITY, RETAIN_VISIBILITY, LEAVE_VISIBILITY
+        */
+        public static void onClientMoveSubscriptionEvent(anyID serverConnectionHandlerID, anyID clientID, anyID oldChannelID, anyID newChannelID, int visibility)
+        {
+            string name;
+            IntPtr namePtr = IntPtr.Zero;
+            /* Query client nickname from ID */
+            uint error = TS3Client.ts3client_getClientVariableAsString(serverConnectionHandlerID, clientID, ClientProperties.CLIENT_NICKNAME, out namePtr);
+            if (error != (int)public_errors.ERROR_ok)
+            {
+                return;
+            }
+            name = Marshal.PtrToStringAnsi(namePtr);
+            Console.WriteLine("New client: {0}", name);
+            TS3Client.ts3client_freeMemory(namePtr);  /* Release dynamically allocated memory only if function succeeded */
+        }
+
+        /*
+        * Called when a client drops his connection.
+        *
+        * Parameters:
+        *   serverConnectionHandlerID - Server connection handler ID
+        *   clientID                  - ID of the moved client
+        *   oldChannelID              - ID of the channel the leaving client was previously member of
+        *   newChannelID              - 0, as client is leaving
+        *   visibility                - Always LEAVE_VISIBILITY
+        *   timeoutMessage            - Optional message giving the reason for the timeout
+        */
+        public static void onClientMoveTimeoutEvent(anyID serverConnectionHandlerID, anyID clientID, anyID oldChannelID, anyID newChannelID, int visibility, string timeoutMessage)
+        {
+            Console.WriteLine("ClientID {0} timeouts with message {1}", clientID, timeoutMessage);
+        }
+
+        /*
+        * This event is called when a client starts or stops talking.
+        *
+        * Parameters:
+        *   serverConnectionHandlerID - Server connection handler ID
+        *   status                    - 1 if client starts talking, 0 if client stops talking
+        *   clientID                  - ID of the client who announced the talk status change
+        */
+        public static void onTalkStatusChangeEvent(anyID serverConnectionHandlerID, int status, anyID clientID)
+        {
+            string name;
+            IntPtr namePtr = IntPtr.Zero;
+            /* Query client nickname from ID */
+            uint error = TS3Client.ts3client_getClientVariableAsString(serverConnectionHandlerID, clientID, ClientProperties.CLIENT_NICKNAME, out namePtr);
+            if (error != (int)public_errors.ERROR_ok)
+            {
+                return;
+            }
+            name = Marshal.PtrToStringAnsi(namePtr);
+            if (status == (int)TalkStatus.STATUS_TALKING)
+            {
+                Console.WriteLine("Client \"{0}\" starts talking.\n", name);
+            }
+            else
+            {
+                Console.WriteLine("Client \"{0}\" stops talking.\n", name);
+            }
+            TS3Client.ts3client_freeMemory(namePtr);  /* Release dynamically allocated memory only if function succeeded */
+        }
+
+        public static void onServerErrorEvent(anyID serverConnectionHandlerID, string errorMessage, uint error, string returnCode, string extraMessage)
+        {
+            Console.WriteLine("Error for server {0}: {1}\n", serverConnectionHandlerID, errorMessage);
+        }
+
+        public static void onServerStopEvent(anyID serverConnectionHandlerID, string shutdownMessage)
+        {
+            Console.WriteLine("Server {0} stopping: {1}", serverConnectionHandlerID, shutdownMessage);
         }
     }
+
 
 }

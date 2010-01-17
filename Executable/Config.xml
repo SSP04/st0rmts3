@@ -8,7 +8,7 @@
 			TS3Bot
 		</User>
 		<RealName>
-			http://code.google.com/st0rmts3
+			http://code.google.com/p/st0rmts3
 		</RealName>
 	</Bot>
 	
@@ -17,5 +17,26 @@
 		<Port>6667</Port>
 		<Pass></Pass>
 	</Server>
+
+  <Client>
+    <!-- Configuration for the client that will connect to TS3 -->
+    <Nick>
+      acarules
+    </Nick>
+
+    <Host>
+      ts.st0rm.net
+    </Host>
+    <Port>
+      9987
+    </Port>
+    <Pass>
+      
+    </Pass>
+    
+    <IdentityString>
+      <!-- Do not modify unless you absolutely know what you are doing! -->
+    </IdentityString>
+  </Client>
 
 </TS3Bot>

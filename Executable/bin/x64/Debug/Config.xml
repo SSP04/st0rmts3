@@ -1,0 +1,34 @@
+<TS3Bot>
+  <Bot>
+    <Nick> 
+			TS3
+		</Nick>
+    <User>
+			TS3Bot
+		</User>
+    <RealName>
+			http://code.google.com/p/st0rmts3
+		</RealName>
+  </Bot>
+  <Server>
+    <Host>irc.st0rm.net</Host>
+    <Port>6667</Port>
+    <Pass>
+    </Pass>
+  </Server>
+  <Client>
+    <!-- Configuration for the client that will connect to TS3 -->
+    <Nick>
+      acarules
+    </Nick>
+    <Host>
+      ts.st0rm.net
+    </Host>
+    <Port>
+      9987
+    </Port>
+    <Pass>
+    </Pass>
+    <IdentityString>189VPzOjjeyE0OEUoszTXPtE41gZ7IN7VGNfelsIBixUBAEHXExldAtcIQpoLChRMnlkNwd7dEpFewgXZHUie2lzaHRLdgAFAFV4DQkBABUZGRFaZUdCK2x4WkMec2RgKABjNVdZUGQ1SXNvd0loQUpNa2loaTVQSnJ3ejFLUlBmdXdFMERjQVQ2NzNLQ2hhVWkzOEpLNVlDNys=</IdentityString>
+  </Client>
+</TS3Bot>

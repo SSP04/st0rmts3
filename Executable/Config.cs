@@ -24,13 +24,65 @@ namespace TS3.Executable
 
         #region Specially Loaded Items
 
-        public string Nick = null;
-        public string User = null;
-        public string Realname = null;
 
-        public string IrcServer = null;
-        public ushort IrcPort = 0;
-        public string IrcPass = null;
+
+        public string Nick
+        {
+            get { return Xml.DocumentElement.SelectSingleNode("/TS3Bot/Bot/Nick").InnerText.Trim(); }
+        }
+        public string User
+        {
+            get { return Xml.DocumentElement.SelectSingleNode("/TS3Bot/Bot/User").InnerText.Trim(); }
+        }
+        public string Realname
+        {
+            get { return Xml.DocumentElement.SelectSingleNode("/TS3Bot/Bot/RealName").InnerText.Trim(); }
+        }
+
+        public string IrcServer 
+        {
+            get { return Xml.DocumentElement.SelectSingleNode("/TS3Bot/Server/Host").InnerText.Trim(); }
+        }
+        public ushort IrcPort
+        {
+            get { return ushort.Parse(Xml.DocumentElement.SelectSingleNode("/TS3Bot/Server/Port").InnerText.Trim()); }
+        }
+        public string IrcPass
+        {
+            get { return Xml.DocumentElement.SelectSingleNode("/TS3Bot/Server/Pass").InnerText.Trim(); }
+        }
+
+        public string TS3Nick
+        {
+            get { return Xml.DocumentElement.SelectSingleNode("/TS3Bot/Client/Nick").InnerText.Trim(); }
+        }
+        public string TS3Host
+        {
+            get { return Xml.DocumentElement.SelectSingleNode("/TS3Bot/Client/Host").InnerText.Trim(); }
+        }
+        public ushort TS3Port
+        {
+            get { return ushort.Parse(Xml.DocumentElement.SelectSingleNode("/TS3Bot/Client/Port").InnerText.Trim()); }
+        }
+        public string TS3Pass
+        {
+            get { return Xml.DocumentElement.SelectSingleNode("/TS3Bot/Client/Pass").InnerText.Trim(); }
+        }
+
+
+        public string TS3Identity
+        {
+            get
+            {
+                string result = null;
+                return (String.IsNullOrEmpty(result = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Client/IdentityString").InnerText.Trim()) ? null : result);
+            }
+            set
+            {
+                Xml.DocumentElement.SelectSingleNode("/TS3Bot/Client/IdentityString").InnerText = value;
+                Save();
+            }
+        }
 
         #endregion
 
@@ -54,14 +106,7 @@ namespace TS3.Executable
             {
 
                 Xml.Load(FILENAME);
-
-                Nick = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Bot/Nick").InnerText;
-                User = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Bot/User").InnerText;
-                Realname = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Bot/RealName").InnerText;
-
-                IrcServer = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Server/Host").InnerText;
-                IrcPort = ushort.Parse(Xml.DocumentElement.SelectSingleNode("/TS3Bot/Server/Port").InnerText);
-                IrcPass = Xml.DocumentElement.SelectSingleNode("/TS3Bot/Server/Pass").InnerText;
+            
 
             }
 
@@ -72,6 +117,15 @@ namespace TS3.Executable
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Saves the XML. Automatically called when properties are modified.
+        /// </summary>
+        public void Save()
+        {
+            Xml.Save(FILENAME);
+            Logger.Log("Configuration file saved.");
         }
 
 

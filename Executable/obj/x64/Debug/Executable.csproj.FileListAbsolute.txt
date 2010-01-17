@@ -1,0 +1,14 @@
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\Config.xml
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\ts3client_win32.dll
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\ts3client_win64.dll
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\TS3Bot.exe
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\TS3Bot.pdb
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\Atlantis.Net.Irc.dll
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\Atlantis.dll
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\Atlantis.xml
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\Atlantis.Net.Irc.xml
+D:\Files\C# Workspace\St0rm TS3\Executable\obj\x64\Debug\ResolveAssemblyReference.cache
+D:\Files\C# Workspace\St0rm TS3\Executable\obj\x64\Debug\TS3Bot.exe
+D:\Files\C# Workspace\St0rm TS3\Executable\obj\x64\Debug\TS3Bot.pdb
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\fmodex.dll
+D:\Files\C# Workspace\St0rm TS3\Executable\bin\x64\Debug\fmodex64.dll
